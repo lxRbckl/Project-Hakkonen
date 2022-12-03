@@ -83,6 +83,21 @@ def feedCallback(
 
                 # content <
                 html.Hr(),
+                dcc.Dropdown(
+
+                    id = 'contentDropdownId',
+                    options = [
+
+                        {
+
+                            'label' : t,
+                            'value' : t
+
+                        }
+
+                    for t in f['content']]
+
+                ),
 
                 # >
 
