@@ -1,10 +1,10 @@
 # import <
 from dash import html, dcc
-from lxRbckl import requestsGet
+from lxRbckl import jsonLoad, jsonDump
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output
 
-from resource import gGithub, gUserLink, application
+from resource import gGithub, gUser, application
 
 # >
 
@@ -26,20 +26,29 @@ def projectFunction():
     Input('projectColId', 'children')
 
 )
-def projectCallback(p: list):
+def colCallback(
+
+        p: list,
+        token: dict = jsonLoad(pFile = 'data/token.json')
+
+):
     '''  '''
 
     return [
 
-        html.Div(
+        # iterate (user) <
+        # submit <
+        *[html.Div(
 
             children = [
 
                 html.Hr(),
                 html.H5(u),
+
                 dcc.Dropdown(
 
                     id = f'{u}DropdownId',
+                    placeholder = 'Select Project...',
                     options = [
 
                         {
@@ -55,6 +64,22 @@ def projectCallback(p: list):
 
             ]
 
-        )
+        ) for u in gUser],
+        html.Hr(),
+        dbc.Button(id = 'projectSubmitId', children = 'Submit')
 
-    for u in requestsGet(pLink = gUserLink)['user']['add']]
+        # >
+
+    ]
+
+
+@application.callback(
+
+    Output(),
+    Input()
+
+)
+def buttonCallback():
+    '''  '''
+
+    pass
