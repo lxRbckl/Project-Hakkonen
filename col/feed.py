@@ -59,16 +59,31 @@ def feedCallback(
 
                 # title <
                 html.H2(c.split('/')[1].replace('-', ' ')),
+                html.Hr(),
 
                 # >
 
                 # link <
                 # border <
                 # background <
-                html.Hr(),
                 dbc.Label('Link'),
                 dbc.Input(id = 'linkId', value = f['link']),
                 dbc.FormText('Does this project have a website?'),
+                html.Div(style = dict(paddingBottom = '1%')),
+
+                dbc.Label('Border'),
+                dbc.Input(id = 'borderId', value = f['border']),
+                dbc.FormText('Does this project have a border color?'),
+                html.Div(style = dict(paddingBottom = '1%')),
+
+                dbc.Label('Image'),
+                dbc.Input(id = 'imageId', value = f['image']),
+                dbc.FormText('Does this project have an image?'),
+
+                # >
+
+                # content <
+                html.Hr(),
 
                 # >
 
