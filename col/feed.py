@@ -58,15 +58,21 @@ def feedCallback(
             return [
 
                 # title <
-                # link <
-                # submit <
                 html.H2(c.split('/')[1].replace('-', ' ')),
 
+                # >
+
+                # link <
+                # border <
+                # background <
                 html.Hr(),
                 dbc.Label('Link'),
                 dbc.Input(id = 'linkId', value = f['link']),
                 dbc.FormText('Does this project have a website?'),
 
+                # >
+
+                # submit <
                 html.Hr(),
                 dbc.Button(id = 'submitId', children = 'Submit')
 
