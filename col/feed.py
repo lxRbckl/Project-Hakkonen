@@ -31,7 +31,7 @@ def feedCallback(
 
         a: str,
         b: str,
-        f: dict = jsonLoad(pFile = 'feed.json')['feed']
+        f: dict = jsonLoad(pFile = 'template/feed.json')['feed']
 
 ):
     '''  '''
@@ -41,11 +41,12 @@ def feedCallback(
 
         try:
 
+            c = a if (a) else b
             f = githubGet(
 
+                pRepository = c,
                 pGithub = gGithub,
-                pFile = 'feed.json',
-                pRepository = a if (a) else b
+                pFile = 'feed.json'
 
             )['feed']
 
@@ -53,8 +54,6 @@ def feedCallback(
         finally:
 
             print(f) # remove
-            c = a if (a) else b
-
             return [
 
                 # title <
