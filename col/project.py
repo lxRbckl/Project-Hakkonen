@@ -9,11 +9,7 @@ from resource import gGithub, gUserLink, application
 # >
 
 
-def projectFunction(
-
-
-
-):
+def projectFunction():
     '''  '''
 
     return dbc.Col(
@@ -30,24 +26,34 @@ def projectFunction(
     Input('projectColId', 'children')
 
 )
-def callbackFunction(p: list):
+def projectCallback(p: list):
     '''  '''
 
     return [
 
-        dcc.Dropdown(
+        html.Div(
 
-            id = f'{u}DropdownId',
-            options = [
+            children = [
 
-                {
+                html.Hr(),
+                html.H5(u),
+                dcc.Dropdown(
 
-                    'label' : r.full_name.split('/')[1],
-                    'value' : r.full_name
+                    id = f'{u}DropdownId',
+                    options = [
 
-                }
+                        {
 
-            for r in gGithub.get_user(u).get_repos()]
+                            'label' : r.full_name.split('/')[1].replace('-', ' '),
+                            'value' : r.full_name
+
+                        }
+
+                    for r in gGithub.get_user(u).get_repos()]
+
+                )
+
+            ]
 
         )
 
