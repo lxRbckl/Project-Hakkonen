@@ -169,23 +169,25 @@ def subjectCallback(
 ):
     '''  '''
 
-    print(gData) # remove
-    print(gData['content'][pContent]['subject'][0]) # remove
-
     if (not pSubject or not pContent): return None
     else:
 
-        return dbc.Card(
+        # print(gData) # remove
+        print(gData['content'][pContent]['subject'][pSubject]) # remove
 
-            style = dict(padding = '1%'),
-            children = {
+        # return dbc.Card(
+        #
+        #     style = dict(padding = '1%'),
+        #     children = {
+        #
+        #         'text' : textFunction,
+        #         'image' : imageFunction,
+        #         'space' : spaceFunction,
+        #         'markdown' : markdownFunction,
+        #         'subtitle' : subtitleFunction
+        #
+        #     }[gData['content'][pContent]['subject'][0][0]]
+        #
+        # )
 
-                'text' : textFunction,
-                'image' : imageFunction,
-                'space' : spaceFunction,
-                'markdown' : markdownFunction,
-                'subtitle' : subtitleFunction
-
-            }[gData['content'][pContent]['subject'][0][0]]
-
-        )
+        return None
