@@ -1,21 +1,22 @@
 # import <
+from github import Github
 from dash import html, dcc
 import dash_bootstrap_components as dbc
+from lxRbckl import githubGet, jsonLoad
 from dash.dependencies import Input, Output, State
-from lxRbckl import githubSet, githubGet, jsonLoad
 
-from content.text import textFunction
-from content.image import imageFunction
-from content.space import spaceFunction
-from content.subtitle import subtitleFunction
-from content.markdown import markdownFunction
-from resource import application, gGithub, lxRbckl, ala2q6, gUser
+from frontend.content.text import textFunction
+from frontend.content.image import imageFunction
+from frontend.content.space import spaceFunction
+from frontend.content.subtitle import subtitleFunction
+from frontend.content.markdown import markdownFunction
+from backend.resource import application, gGithub, gUser
 
 # >
 
 
 # global <
-gData = jsonLoad(pFile = 'template/feed.json')['feed']
+gData = jsonLoad(pFile = 'backend/template/feed.json')['feed']
 
 # >
 

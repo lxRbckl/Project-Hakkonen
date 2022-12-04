@@ -4,9 +4,9 @@
 # import <
 import dash_bootstrap_components as dbc
 
-from resource import application
-from col.feed import feedFunction
-from col.project import projectFunction
+from backend.resource import application
+from frontend.col.feed import feedFunction
+from frontend.col.project import projectFunction
 
 # >
 
@@ -14,6 +14,7 @@ from col.project import projectFunction
 application.layout = dbc.Container(
 
     fluid = True,
+    style = dict(backgroundColor = 'rgb(248, 240, 227)'),
     children = dbc.Row(
 
         children = [

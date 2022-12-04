@@ -2,9 +2,9 @@
 from dash import html, dcc
 from lxRbckl import jsonLoad, jsonDump
 import dash_bootstrap_components as dbc
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 
-from resource import gGithub, gUser, application
+from backend.resource import gGithub, gUser, application, gDirectory
 
 # >
 
@@ -29,7 +29,7 @@ def projectFunction():
 def colCallback(
 
         p: list,
-        token: dict = jsonLoad(pFile = 'data/token.json')
+        token: dict = jsonLoad(pFile = 'backend/data/token.json')
 
 ):
     '''  '''
@@ -37,17 +37,31 @@ def colCallback(
     return [
 
         # iterate (user) <
-        # submit <
         *[html.Div(
 
             children = [
 
                 html.Hr(),
-                html.H5(u),
+                dbc.InputGroup(
 
+                    size = 'sm',
+                    children = [
+
+                        dbc.InputGroupText(u),
+                        dbc.Input(
+
+                            id = f'{u}InputId',
+                            placeholder = 'GitHub API Token'
+
+                        )
+
+                    ]
+
+                ),
                 dcc.Dropdown(
 
                     id = f'{u}DropdownId',
+                    style = dict(marginTop = '1%'),
                     placeholder = 'Select Project...',
                     options = [
 
@@ -65,6 +79,10 @@ def colCallback(
             ]
 
         ) for u in gUser],
+
+        # >
+
+        # submit <
         html.Hr(),
         dbc.Button(id = 'projectSubmitId', children = 'Submit')
 
@@ -75,11 +93,28 @@ def colCallback(
 
 @application.callback(
 
-    Output(),
-    Input()
+    [Output(f'{u}InputId', 'value') for u in gUser],
+    Input('projectSubmitId', 'n_clicks'),
+    [State(f'{u}InputId', 'value') for u in gUser]
 
 )
-def buttonCallback():
+def submitCallback(
+
+        pClick: int,
+        *args
+
+):
     '''  '''
 
-    pass
+    # local <
+    token = jsonLoad(pFile = f'{gDirectory}/backend/data/token.json')
+
+
+    # >
+
+    # if (click) then update <
+
+
+    # >
+
+    return [None, None]
