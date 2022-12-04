@@ -36,12 +36,17 @@ def colCallback(p: list):
 
     return [
 
+        # header <
+        html.H1('Project Hakkonen'),
+        html.Hr(style = dict(marginTop = '-1%')),
+
+        # >
+
         # iterate (user) <
         *[html.Div(
 
             children = [
 
-                html.Hr(),
                 dbc.InputGroup(
 
                     size = 'sm',
@@ -75,7 +80,8 @@ def colCallback(p: list):
 
                     for r in gGithub.get_user(u).get_repos()]
 
-                )
+                ),
+                html.Hr()
 
             ]
 
@@ -84,7 +90,6 @@ def colCallback(p: list):
         # >
 
         # submit <
-        html.Hr(),
         dbc.Button(id = 'projectSubmitId', children = 'Submit')
 
         # >
