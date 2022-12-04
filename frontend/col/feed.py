@@ -173,28 +173,23 @@ def subjectCallback(
     if (not pSubject or not pContent): return None
     else:
 
-        print(gData) # remove
-        print(gData['content'][pContent]['subject'][pSubject]) # remove
+        card = dbc.Card(style = dict(marginTop = '0.5%'))
 
-        return [
+        # try if (existing) <
+        # except then (new) <
+        # finally (return content) <
+        try: card.children = existingFunction(
 
-            html.Hr(),
-            dbc.Card(
+            pType = gData['content'][pContent]['subject'][pSubject][0],
+            pColor = gData['content'][pContent]['subject'][pSubject][1],
+            pContent = gData['content'][pContent]['subject'][pSubject][2]
 
-                style = dict(marginTop = '0.5%'),
-                children = {
+        )
+        except: card.children = newFunction(
 
-                    True : newFunction,
-                    False : existingFunction
+            pType = gData['content'][pContent]['subject'][pSubject][0]
 
-                }[True if (pSubject) else False](
+        )
+        finally: return [html.Hr(), card]
 
-                    pType = gData['content'][pContent]['subject'][pSubject][0],
-                    pColor = gData['content'][pContent]['subject'][pSubject][1],
-                    pContent = gData['content'][pContent]['subject'][pSubject][2]
-
-                )
-
-            )
-
-        ]
+        # >
