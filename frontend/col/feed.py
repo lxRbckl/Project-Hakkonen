@@ -64,26 +64,29 @@ def projectCallback(*args):
 
                 # title <
                 html.H2(c.split('/')[1].replace('-', ' ')),
-                html.Hr(),
+                html.Hr(style = dict(marginTop = '-0.5%')),
 
                 # >
 
                 # link <
                 # border <
                 # background <
-                dbc.Label('Link'),
-                dbc.Input(id = 'linkId', value = gData['link']),
-                dbc.FormText('Does this project have a website?'),
-                html.Div(style = dict(paddingBottom = '1%')),
+                *[
 
-                dbc.Label('Border'),
-                dbc.Input(id = 'borderId', value = gData['border']),
-                dbc.FormText('Does this project have a border color?'),
-                html.Div(style = dict(paddingBottom = '1%')),
+                    dbc.InputGroup(
 
-                dbc.Label('Image'),
-                dbc.Input(id = 'imageId', value = gData['image']),
-                dbc.FormText('Does this project have an image?'),
+                        size = 'sm',
+                        style = dict(marginTop = '0.5%'),
+                        children = [
+
+                            dbc.InputGroupText(i.title()),
+                            dbc.Input(id = f'{i}InputId', value = gData[i])
+
+                        ]
+
+                    )
+
+                for i in ('link', 'border', 'image')],
 
                 # >
 
@@ -133,13 +136,8 @@ def contentCallback(pContent: str):
         return dcc.Dropdown(
 
             id = 'subjectDropdownId',
+            style = dict(marginTop = '0.5%'),
             placeholder = 'Select Subject...',
-            style = dict(
-
-                marginTop = '1%',
-                marginBottom = '1%'
-
-            ),
             options = [
 
                 {
