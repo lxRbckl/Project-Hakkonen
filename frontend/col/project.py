@@ -26,13 +26,13 @@ def projectFunction():
     Input('projectColId', 'children')
 
 )
-def colCallback(
-
-        p: list,
-        token: dict = jsonLoad(pFile = 'backend/data/token.json')
-
-):
+def colCallback(p: list):
     '''  '''
+
+    # local <
+    token: dict = jsonLoad(pFile = 'backend/data/token.json')
+
+    # >
 
     return [
 
@@ -50,6 +50,7 @@ def colCallback(
                         dbc.InputGroupText(u),
                         dbc.Input(
 
+                            value = token[u],
                             id = f'{u}InputId',
                             placeholder = 'GitHub API Token'
 
@@ -109,12 +110,22 @@ def submitCallback(
     # local <
     token = jsonLoad(pFile = f'{gDirectory}/backend/data/token.json')
 
+    # >
+
+    # update <
+    for t, u in zip(args, gUser): token[u] = t
 
     # >
 
     # if (click) then update <
+    if (pClick): jsonDump(
 
+        pData = token,
+        pFile = f'{gDirectory}/backend/data/token.json'
+
+    )
 
     # >
 
-    return [None, None]
+    try: return [token[u] for u in gUser]
+    except: return [None for u in gUser]
