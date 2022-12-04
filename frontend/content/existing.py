@@ -4,13 +4,13 @@ import dash_bootstrap_components as dbc
 # >
 
 
-def textFunction(
+def existingFunction(
 
-        pData: dict,
+        pType: str,
         pColor: str,
         pContent: str
 
 ):
     '''  '''
 
-    pass
+    return None

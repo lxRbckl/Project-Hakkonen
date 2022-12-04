@@ -5,11 +5,8 @@ import dash_bootstrap_components as dbc
 from lxRbckl import githubGet, jsonLoad
 from dash.dependencies import Input, Output, State
 
-from frontend.content.text import textFunction
-from frontend.content.image import imageFunction
-from frontend.content.space import spaceFunction
-from frontend.content.subtitle import subtitleFunction
-from frontend.content.markdown import markdownFunction
+from frontend.content.new import newFunction
+from frontend.content.existing import existingFunction
 from backend.resource import application, gGithub, gUser
 
 # >
@@ -109,6 +106,10 @@ def projectCallback(*args):
 
                 ),
                 html.Div(id = 'contentDivId'),
+
+                # >
+
+                # subject <
                 html.Div(id = 'subjectDivId'),
 
                 # >
@@ -172,22 +173,28 @@ def subjectCallback(
     if (not pSubject or not pContent): return None
     else:
 
-        # print(gData) # remove
+        print(gData) # remove
         print(gData['content'][pContent]['subject'][pSubject]) # remove
 
-        # return dbc.Card(
-        #
-        #     style = dict(padding = '1%'),
-        #     children = {
-        #
-        #         'text' : textFunction,
-        #         'image' : imageFunction,
-        #         'space' : spaceFunction,
-        #         'markdown' : markdownFunction,
-        #         'subtitle' : subtitleFunction
-        #
-        #     }[gData['content'][pContent]['subject'][0][0]]
-        #
-        # )
+        return [
 
-        return None
+            html.Hr(),
+            dbc.Card(
+
+                style = dict(marginTop = '0.5%'),
+                children = {
+
+                    True : newFunction,
+                    False : existingFunction
+
+                }[True if (pSubject) else False](
+
+                    pType = gData['content'][pContent]['subject'][pSubject][0],
+                    pColor = gData['content'][pContent]['subject'][pSubject][1],
+                    pContent = gData['content'][pContent]['subject'][pSubject][2]
+
+                )
+
+            )
+
+        ]
