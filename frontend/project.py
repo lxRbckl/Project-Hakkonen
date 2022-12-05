@@ -34,10 +34,78 @@ def colCallback(pChildren: list):
 
     # >
 
+    # # header <
+    # dbc.Row(
+    #
+    #     justify = 'between',
+    #     children = [
+    #
+    #         # title <
+    #         # refresh <
+    #         dbc.Col(
+    #
+    #             width = 'auto',
+    #             children = html.H2(children = c.split('/')[1].replace('-', ' '))
+    #
+    #         ),
+    #         dbc.Col(
+    #
+    #             width = 'auto',
+    #             children = dbc.Button(
+    #
+    #                 children = '↻',
+    #                 id = 'refreshButtonId',
+    #                 className = 'float-end'
+    #
+    #             )
+    #
+    #         ),
+    #
+    #         # >
+    #
+    #     ]
+    #
+    # ),
+    #
+    # # >
+
     return [
 
         # header <
-        html.H1(children = 'Project Hakkonen'),
+        # refresh <
+        # html.H1(children = 'Project Hakkonen'),
+        dbc.Row(
+
+            justify = 'between',
+            children = [
+
+                # title <
+                # refresh <
+                dbc.Col(
+
+                    width = 'auto',
+                    children = html.H1(children = 'Project Hakkonen')
+
+                ),
+                dbc.Col(
+
+                    width = 'auto',
+                    align = 'center',
+                    children = dbc.Button(
+
+                        size = 'sm',
+                        children = '↻',
+                        id = 'refreshButtonId'
+
+                    )
+
+                )
+
+                # >
+
+            ]
+
+        ),
         html.Hr(style = dict(marginTop = '-1%')),
 
         # >
@@ -94,18 +162,10 @@ def colCallback(pChildren: list):
         # >
 
         # submit <
-        # refresh <
         dbc.Button(
 
             children = 'Submit',
             id = 'submitButtonId',
-
-        ),
-        dbc.Button(
-
-            children = '↻',
-            id = 'refreshButtonId',
-            className = 'float-end'
 
         )
 

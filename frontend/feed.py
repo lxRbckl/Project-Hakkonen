@@ -31,10 +31,11 @@ def feedFunction():
 @application.callback(
 
     Output('feedColId', 'children'),
+    Input('refreshButtonId', 'n_clicks'),
     [Input(f'{i}DropdownId', 'value') for i in gUser]
 
 )
-def colCallback(*args):
+def colCallback(pClick, *args):
     '''  '''
 
     global gData
@@ -58,9 +59,9 @@ def colCallback(*args):
 
             return [
 
-                # title <
-                html.H2(c.split('/')[1].replace('-', ' ')),
-                html.Hr(style = dict(marginTop = '-0.5%')),
+                # header <
+                html.H2(children = c.split('/')[1].replace('-', ' ')),
+                html.Hr(style = dict(marginTop = '0.5%')),
 
                 # >
 
@@ -88,7 +89,7 @@ def colCallback(*args):
 
                 # content <
                 html.Hr(),
-                html.Div(children = contentFunction()),
+                html.Div(id = 'contentDivId'),
 
                 # >
 
