@@ -196,15 +196,21 @@ def subjectCallback(
         ]
 
 
-# @application.callback(
-#
-#     Output('feedSubmitId', 'n_clicks'),
-#     Input('feedSubmitId', 'n_clicks'),
-#     State('testid', 'children')
-#
-# )
-# def submitCallback(x, y):
-#     '''  '''
-#
-#     print('x', x, 'y', y)
-#     return None
+@application.callback(
+
+    Output('feedSubmitId', 'n_clicks'),
+    Input('feedSubmitId', 'n_clicks'),
+    State('testid', 'children'),
+    prevent_initial_call = True
+
+)
+def submitCallback(
+
+        x,
+        y
+
+):
+    '''  '''
+
+    print('x', x, 'y', y)
+    return None
