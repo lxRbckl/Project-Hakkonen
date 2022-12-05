@@ -170,7 +170,7 @@ def subjectCallback(
 ):
     '''  '''
 
-    if (not pSubject or not pContent): return None
+    if (not pContent): return None
     else:
 
         card = dbc.Card(style = dict(marginTop = '0.5%'))
