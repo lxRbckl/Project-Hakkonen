@@ -26,7 +26,7 @@ def projectFunction():
     Input('projectColId', 'children')
 
 )
-def colCallback(p: list):
+def colCallback(pChildren: list):
     '''  '''
 
     # local <
@@ -37,7 +37,7 @@ def colCallback(p: list):
     return [
 
         # header <
-        html.H1('Project Hakkonen'),
+        html.H1(children = 'Project Hakkonen'),
         html.Hr(style = dict(marginTop = '-1%')),
 
         # >
@@ -47,6 +47,8 @@ def colCallback(p: list):
 
             children = [
 
+                # token <
+                # project <
                 dbc.InputGroup(
 
                     size = 'sm',
@@ -83,6 +85,8 @@ def colCallback(p: list):
                 ),
                 html.Hr()
 
+                # >
+
             ]
 
         ) for u in gUser],
@@ -90,7 +94,20 @@ def colCallback(p: list):
         # >
 
         # submit <
-        dbc.Button(id = 'projectSubmitId', children = 'Submit')
+        # refresh <
+        dbc.Button(
+
+            children = 'Submit',
+            id = 'submitButtonId',
+
+        ),
+        dbc.Button(
+
+            children = '↻',
+            id = 'refreshButtonId',
+            className = 'float-end'
+
+        )
 
         # >
 
@@ -100,7 +117,7 @@ def colCallback(p: list):
 @application.callback(
 
     [Output(f'{u}InputId', 'value') for u in gUser],
-    Input('projectSubmitId', 'n_clicks'),
+    Input('submitButtonId', 'n_clicks'),
     [State(f'{u}InputId', 'value') for u in gUser]
 
 )

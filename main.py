@@ -4,9 +4,9 @@
 # import <
 import dash_bootstrap_components as dbc
 
+from frontend.feed import feedFunction
 from backend.resource import application
-from frontend.col.feed import feedFunction
-from frontend.col.project import projectFunction
+from frontend.project import projectFunction
 
 # >
 
