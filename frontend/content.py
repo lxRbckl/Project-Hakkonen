@@ -8,14 +8,25 @@ from backend.resource import application
 # >
 
 
+# global <
+gData = None
+
+# >
+
+
 def contentFunction(
 
         # pType: str = None,
         # pColor: str = None,
         # pContent: str = None
 
+        pData: dict
+
 ):
     '''  '''
+
+    global gData
+    gData = pData
 
     return [
 
@@ -29,7 +40,13 @@ def contentFunction(
 
                 dbc.InputGroupText(children = 'Content'),
                 dbc.Input(id = 'contentCreateId', placeholder = 'Create content...'),
-                dbc.Select(id = f'contentLoadId', placeholder = 'Load content...')
+                dbc.Select(
+
+                    id = 'contentLoadId',
+                    placeholder = 'Load content...',
+                    options = [{'label' : i, 'value' : i} for i in pData['content'].keys()]
+
+                )
 
             ]
 
@@ -44,7 +61,7 @@ def contentFunction(
                 dbc.Select(
 
                     id = 'subjectSelectId',
-                    placeholder = 'Select subject...',
+                    placeholder = 'Create subject...',
                     options = [
 
                         {'label' : 'text', 'value' : 'text'},
@@ -75,3 +92,25 @@ def contentFunction(
     ]
 
 
+@application.callback(
+
+    Output('subjectLoadId', 'options'),
+    Input('contentLoadId', 'value')
+
+)
+def contentCallback(pValue: str):
+    '''  '''
+
+    if (not pValue): return None
+    else:
+
+        return [
+
+            {
+
+                'value' : c,
+                'label' : f'{c}. {i[0]}'
+
+            }
+
+        for c, i in enumerate(gData['content'][pValue]['subject'], start = 1)]
