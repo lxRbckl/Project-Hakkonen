@@ -87,7 +87,7 @@ def contentFunction(
 
         # >
 
-        html.Div(id = 'contentDivId')
+        html.Div(id = 'subjectDivId')
 
     ]
 
@@ -98,10 +98,10 @@ def contentFunction(
     Input('contentLoadId', 'value')
 
 )
-def contentCallback(pValue: str):
+def contentCallback(pContent: str):
     '''  '''
 
-    if (not pValue): return None
+    if (not pContent): return None
     else:
 
         return [
@@ -113,4 +113,25 @@ def contentCallback(pValue: str):
 
             }
 
-        for c, i in enumerate(gData['content'][pValue]['subject'], start = 1)]
+        for c, i in enumerate(gData['content'][pContent]['subject'], start = 1)]
+
+
+@application.callback(
+
+    Output('subjectDivId', 'children'),
+    Input('subjectLoadId', 'value'),
+    State('contentLoadId', 'value')
+
+)
+def subjectCallback(
+
+        pSubject: int,
+        pContent: str
+
+):
+    '''  '''
+
+    # gData['content'][pContent]['subject'][int(pSubject)]
+    # output: [pType, pColor, pContent]
+
+    return None
