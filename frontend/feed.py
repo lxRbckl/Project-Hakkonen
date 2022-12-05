@@ -89,7 +89,7 @@ def colCallback(pClick, *args):
 
                 # content <
                 html.Hr(),
-                html.Div(id = 'contentDivId'),
+                html.Div(children = contentFunction()),
 
                 # >
 
