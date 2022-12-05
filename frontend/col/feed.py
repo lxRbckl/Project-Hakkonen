@@ -177,7 +177,12 @@ def subjectCallback(
             html.Hr(),
             dbc.Card(
 
-                style = dict(marginTop = '0.5%'),
+                style = dict(
+
+                    padding = '0.5%',
+                    marginTop = '0.5%'
+
+                ),
                 children = subjectFunction(
 
                     pType = gData['content'][pContent]['subject'][pSubject][0] if (pSubject) else None,
