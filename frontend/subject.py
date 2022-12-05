@@ -13,4 +13,8 @@ def subjectFunction(
 ):
     '''  '''
 
+    print(pType)
+    print(pColor)
+    print(pContent)
+
     return None

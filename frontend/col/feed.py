@@ -180,9 +180,9 @@ def subjectCallback(
                 style = dict(marginTop = '0.5%'),
                 children = subjectFunction(
 
-                    pType = gData['content'][pContent]['subject'][pSubject][0] if (pContent) else None,
-                    pColor = gData['content'][pContent]['subject'][pSubject][1] if (pContent) else None,
-                    pContent = gData['content'][pContent]['subject'][pSubject][2] if (pContent) else None
+                    pType = gData['content'][pContent]['subject'][pSubject][0] if (pSubject) else None,
+                    pColor = gData['content'][pContent]['subject'][pSubject][1] if (pSubject) else None,
+                    pContent = gData['content'][pContent]['subject'][pSubject][2] if (pSubject) else None
 
                 )
 
