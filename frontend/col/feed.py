@@ -135,6 +135,7 @@ def contentCallback(pContent: str):
 
         return dcc.Dropdown(
 
+            value = None,
             id = 'subjectDropdownId',
             style = dict(marginTop = '0.5%'),
             placeholder = 'Select Subject...',
@@ -157,43 +158,52 @@ def contentCallback(pContent: str):
 @application.callback(
 
     Output('subjectDivId', 'children'),
-    Input('subjectDropdownId', 'value'),
-    State('contentDropdownId', 'value')
+    Input('contentDropdownId', 'value'),
+    State('subjectDropdownId', 'value'),
+    prevent_initial_call = True
 
 )
 def subjectCallback(
 
-        pSubject: int,
-        pContent: str
+        pContentValue: str,
+        pSubjectValue: int,
+
+        pType: str = None,
+        pColor: str = None,
+        pContent: str = None
 
 ):
     '''  '''
 
-    if (not pContent): return None
-    else:
+    try:
 
-        return [
+        pType = gData['content'][pContentValue]['subject'][pSubjectValue][0]
+        pColor = gData['content'][pContentValue]['subject'][pSubjectValue][1]
+        pContent = gData['content'][pContentValue]['subject'][pSubjectValue][2]
 
-            html.Hr(),
-            dbc.Card(
+    except: pass
+    return [
 
-                style = dict(
+        html.Hr(),
+        dbc.Card(
 
-                    padding = '0.5%',
-                    marginTop = '0.5%'
+            style = dict(
 
-                ),
-                children = subjectFunction(
+                padding = '0.5%',
+                marginTop = '0.5%'
 
-                    pType = gData['content'][pContent]['subject'][pSubject][0] if (pSubject) else None,
-                    pColor = gData['content'][pContent]['subject'][pSubject][1] if (pSubject) else None,
-                    pContent = gData['content'][pContent]['subject'][pSubject][2] if (pSubject) else None
+            ),
+            children = subjectFunction(
 
-                )
+                pType = pType,
+                pColor = pColor,
+                pContent = pContent
 
             )
 
-        ]
+        )
+
+    ]
 
 
 @application.callback(
