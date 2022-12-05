@@ -5,8 +5,7 @@ import dash_bootstrap_components as dbc
 from lxRbckl import githubGet, jsonLoad
 from dash.dependencies import Input, Output, State
 
-from frontend.content.new import newFunction
-from frontend.content.existing import existingFunction
+from frontend.subject import subjectFunction
 from backend.resource import application, gGithub, gUser
 
 # >
@@ -173,23 +172,34 @@ def subjectCallback(
     if (not pContent): return None
     else:
 
-        card = dbc.Card(style = dict(marginTop = '0.5%'))
+        return [
 
-        # try if (existing) <
-        # except then (new) <
-        # finally (return content) <
-        try: card.children = existingFunction(
+            html.Hr(),
+            dbc.Card(
 
-            pType = gData['content'][pContent]['subject'][pSubject][0],
-            pColor = gData['content'][pContent]['subject'][pSubject][1],
-            pContent = gData['content'][pContent]['subject'][pSubject][2]
+                style = dict(marginTop = '0.5%'),
+                children = subjectFunction(
 
-        )
-        except: card.children = newFunction(
+                    pType = gData['content'][pContent]['subject'][pSubject][0] if (pContent) else None,
+                    pColor = gData['content'][pContent]['subject'][pSubject][1] if (pContent) else None,
+                    pContent = gData['content'][pContent]['subject'][pSubject][2] if (pContent) else None
 
-            pType = gData['content'][pContent]['subject'][pSubject][0]
+                )
 
-        )
-        finally: return [html.Hr(), card]
+            )
 
-        # >
+        ]
+
+
+# @application.callback(
+#
+#     Output('feedSubmitId', 'n_clicks'),
+#     Input('feedSubmitId', 'n_clicks'),
+#     State('testid', 'children')
+#
+# )
+# def submitCallback(x, y):
+#     '''  '''
+#
+#     print('x', x, 'y', y)
+#     return None
