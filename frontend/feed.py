@@ -22,7 +22,7 @@ def feedFunction():
 
     return dbc.Col(
 
-        width = 8,
+        width = 6,
         id = 'feedColId'
 
     )

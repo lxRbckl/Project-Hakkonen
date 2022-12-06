@@ -17,6 +17,7 @@ application.layout = dbc.Container(
     style = dict(backgroundColor = 'rgb(248, 240, 227)'),
     children = dbc.Row(
 
+        justify = 'center',
         children = [
 
             # project <
