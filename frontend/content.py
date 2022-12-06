@@ -58,7 +58,6 @@ def contentFunction(pData: dict):
                     options = [
 
                         {'label' : 'text', 'value' : 'text'},
-                        {'label' : 'title', 'value' : 'title'},
                         {'label' : 'space', 'value' : 'space'},
                         {'label' : 'image', 'value' : 'image'},
                         {'label' : 'subtitle', 'value' : 'subtitle'},
@@ -77,7 +76,11 @@ def contentFunction(pData: dict):
             ]
 
         ),
-        dbc.FormText(children = 'Create content then load text to insert new content. Same for subject.'),
+
+        # >
+
+        # message <
+        dbc.FormText(children = 'Create content then load to insert. Same for subject.'),
 
         # >
 
