@@ -115,14 +115,15 @@ def colCallback(pClick, *args):
 
                 ]
 
-    except Exception as e:
-
-        print(e) # remove
+    except:
 
         repository = args[1] if (args[1]) else args[0]
         token = jsonLoad(pFile = f'{gDirectory}/backend/data/token.json')
         feed = jsonLoad(pFile = f'{gDirectory}/backend/template/feed.json')
 
+        # try if () <
+        # except then () <
+        # finally () <
         try: gGithub.get_repo(repository).get_contents(path = 'feed.json')
         except:
 
@@ -132,9 +133,19 @@ def colCallback(pClick, *args):
                 pBranch = 'main',
                 pFile = 'feed.json',
                 pRepository = repository,
-                pMessage = 'Added feed.json',
+                pMessage = 'Added feed.json by Project Hakkonen',
                 pGithub = Github(token[repository.split('/')[0]])
 
             )
 
-        finally: return None
+        finally: return dbc.Alert(
+
+            is_open = True,
+            color = 'danger',
+            dismissable = True,
+            style = dict(marginTop = '1%'),
+            children = 'feed.json file added. Please clear and refresh.'
+
+        )
+
+        # >
