@@ -139,6 +139,12 @@ def subjectCallback(
     # finally (return subject) <
     try: subject = gData['content'][pContentLoad]['subject'][int(pSubjectLoad)]
     except: subject = [pSubjectCreate, None, None]
-    finally: return subjectFunction(pSubject = subject)
+    finally: return subjectFunction(
+
+        pData = gData,
+        pSubject = subject,
+        pContentLoad = pContentLoad
+
+    )
 
     # >
