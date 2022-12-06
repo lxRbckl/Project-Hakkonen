@@ -77,6 +77,7 @@ def contentFunction(pData: dict):
             ]
 
         ),
+        dbc.FormText(children = 'Create content then load text to insert new content. Same for subject.'),
 
         # >
 

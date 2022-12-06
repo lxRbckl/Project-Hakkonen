@@ -87,6 +87,11 @@ def colCallback(pClick, *args):
 
                 # >
 
+                # message <
+                dbc.FormText(children = 'Parameters representative of the entire project.'),
+
+                # >
+
                 # content <
                 html.Hr(),
                 html.Div(children = contentFunction(pData = gData)),
