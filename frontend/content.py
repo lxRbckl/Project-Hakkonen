@@ -4,6 +4,7 @@ import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output, State
 
 from backend.resource import application
+from frontend.subject import subjectFunction
 
 # >
 
@@ -14,15 +15,7 @@ gData = None
 # >
 
 
-def contentFunction(
-
-        # pType: str = None,
-        # pColor: str = None,
-        # pContent: str = None
-
-        pData: dict
-
-):
+def contentFunction(pData: dict):
     '''  '''
 
     global gData
@@ -60,7 +53,7 @@ def contentFunction(
                 dbc.InputGroupText(children = 'Subject'),
                 dbc.Select(
 
-                    id = 'subjectSelectId',
+                    id = 'subjectCreateId',
                     placeholder = 'Create subject...',
                     options = [
 
@@ -120,18 +113,28 @@ def contentCallback(pContent: str):
 
     Output('subjectDivId', 'children'),
     Input('subjectLoadId', 'value'),
+    Input('subjectCreateId', 'value'),
     State('contentLoadId', 'value')
 
 )
 def subjectCallback(
 
-        pSubject: int,
-        pContent: str
+        pSubjectLoad: int,
+        pSubjectCreate: str,
+        pContentLoad: str,
+
+        pType: str = None,
+        pColor: str = None,
+        pContent: str = None
 
 ):
     '''  '''
 
-    # gData['content'][pContent]['subject'][int(pSubject)]
-    # output: [pType, pColor, pContent]
+    # try if (existing) <
+    # except then (new) <
+    # finally (return subject) <
+    try: subject = gData['content'][pContentLoad]['subject'][int(pSubjectLoad)]
+    except: subject = [pSubjectCreate, None, None]
+    finally: return subjectFunction(pSubject = subject)
 
-    return None
+    # >
