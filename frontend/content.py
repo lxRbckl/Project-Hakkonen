@@ -106,7 +106,7 @@ def contentCallback(pContent: str):
 
             }
 
-        for c, i in enumerate(gData['content'][pContent]['subject'], start = 1)]
+        for c, i in enumerate(gData['content'][pContent]['subject'])]
 
 
 @application.callback(
