@@ -8,17 +8,17 @@ import dash_bootstrap_components as dbc
 def subjectFunction(
 
         pData: dict,
-        pSubject: list,
-        pContentLoad: str
+        pSubjectLoad: list,
+        pContentLoad: str,
+        pContentCreate: str
 
 ):
     '''  '''
 
-    # print(pContentLoad) # remove
-    # print(pData) # remove
-
     # local <
-    pType, pColor, pContent = pSubject
+    pType, pColor, pContent = pSubjectLoad
+    try: background = pData['content'][pContentLoad]['background']
+    except: background = None
 
     # >
 
@@ -30,7 +30,6 @@ def subjectFunction(
         return [
 
             # content <
-            html.Hr(),
             dbc.InputGroup(
 
                 size = 'sm',
@@ -40,19 +39,19 @@ def subjectFunction(
                     # title <
                     # background <
                     # title color <
-                    dbc.InputGroupText(children = pContentLoad),
+                    dbc.InputGroupText(children = pContentLoad if (pContentLoad) else pContentCreate),
                     dbc.Input(
 
                         id = 'backgroundInputId',
                         placeholder = 'Background',
-                        value = pData['content'][pContentLoad]['background']
+                        value = None if (background == True) else background
 
                     ),
                     dbc.Input(
 
                         id = 'titleColorInputId',
                         placeholder = 'Title Color',
-                        value = pData['content'][pContentLoad]['title']
+                        value = pData['content'][pContentLoad]['title'] if (pContentLoad) else None
 
                     )
 

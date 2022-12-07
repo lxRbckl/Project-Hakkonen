@@ -14,7 +14,7 @@ def projectFunction():
 
     return dbc.Col(
 
-        width = 4,
+        width = 5,
         id = 'projectColId'
 
     )
@@ -34,46 +34,10 @@ def colCallback(pChildren: list):
 
     # >
 
-    # # header <
-    # dbc.Row(
-    #
-    #     justify = 'between',
-    #     children = [
-    #
-    #         # title <
-    #         # refresh <
-    #         dbc.Col(
-    #
-    #             width = 'auto',
-    #             children = html.H2(children = c.split('/')[1].replace('-', ' '))
-    #
-    #         ),
-    #         dbc.Col(
-    #
-    #             width = 'auto',
-    #             children = dbc.Button(
-    #
-    #                 children = '↻',
-    #                 id = 'refreshButtonId',
-    #                 className = 'float-end'
-    #
-    #             )
-    #
-    #         ),
-    #
-    #         # >
-    #
-    #     ]
-    #
-    # ),
-    #
-    # # >
-
     return [
 
         # header <
         # refresh <
-        # html.H1(children = 'Project Hakkonen'),
         dbc.Row(
 
             justify = 'between',

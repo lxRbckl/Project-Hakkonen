@@ -118,14 +118,16 @@ def contentCallback(pContent: str):
     Output('subjectDivId', 'children'),
     Input('subjectLoadId', 'value'),
     Input('subjectCreateId', 'value'),
-    State('contentLoadId', 'value')
+    State('contentLoadId', 'value'),
+    State('contentCreateId', 'value')
 
 )
 def subjectCallback(
 
-        pSubjectLoad: int,
+        pSubjectLoad: str,
         pSubjectCreate: str,
         pContentLoad: str,
+        pContentCreate: str,
 
         pType: str = None,
         pColor: str = None,
@@ -142,8 +144,9 @@ def subjectCallback(
     finally: return subjectFunction(
 
         pData = gData,
-        pSubject = subject,
-        pContentLoad = pContentLoad
+        pSubjectLoad = subject,
+        pContentLoad = pContentLoad,
+        pContentCreate = pContentCreate
 
     )
 

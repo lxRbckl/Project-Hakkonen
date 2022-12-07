@@ -42,7 +42,7 @@ def colCallback(pClick, *args):
 
     try:
 
-        if (args.count(None) == len(gUser)): print('ok'); gData = None
+        if (args.count(None) == len(gUser)): gData = None
         if (args.count(None) == len(args)): return None
         else:
 
@@ -121,9 +121,9 @@ def colCallback(pClick, *args):
         token = jsonLoad(pFile = f'{gDirectory}/backend/data/token.json')
         feed = jsonLoad(pFile = f'{gDirectory}/backend/template/feed.json')
 
-        # try if () <
-        # except then () <
-        # finally () <
+        # try if (feed.json exists) <
+        # except then (no feed.json) <
+        # finally (notify user ) <
         try: gGithub.get_repo(repository).get_contents(path = 'feed.json')
         except:
 
@@ -149,3 +149,50 @@ def colCallback(pClick, *args):
         )
 
         # >
+
+
+@application.callback(
+
+    Output('updateButtonId', 'n_clicks'),
+    Input('updateButtonId', 'n_clicks'),
+
+    State('contentCreateId', 'value'),
+    State('contentLoadId', 'value'),
+    State('subjectCreateId', 'value'),
+    State('subjectLoadId', 'value'),
+
+    State('backgroundInputId', 'value'),
+    State('titleColorInputId', 'value'),
+    State('textColorInputId', 'value'),
+    State('contentInputId', 'value')
+
+)
+def updateCallback(
+
+        pClick: int,
+
+        pContentCreate: str,
+        pContentLoad: str,
+        pSubjectCreate: str,
+        pSubjectLoad: str,
+
+        pBackgroundInput: str,
+        pTitleColor: str,
+        pTextColor: str,
+        pContent: str
+
+):
+    ''' '''
+
+    print('content create', pContentCreate)
+    print('content load', pContentLoad)
+    print('subject create', pSubjectCreate)
+    print('subject load', pSubjectLoad)
+
+    print('background', pBackgroundInput)
+    print('title color', pTitleColor)
+    print('text color', pTextColor)
+    print('content', pContent)
+    print()
+
+    return None
