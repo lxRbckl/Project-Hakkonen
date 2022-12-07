@@ -3,7 +3,7 @@ from github import Github
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output, State
-from lxRbckl import githubGet, jsonLoad, githubCreate
+from lxRbckl import githubGet, jsonLoad, githubCreate, githubSet
 
 from frontend.content import contentFunction
 from backend.resource import application, gGithub, gUser, gDirectory
@@ -162,6 +162,7 @@ def colCallback(pClick, *args):
     State('subjectCreateId', 'value'),
     State('subjectLoadId', 'value'),
 
+    State('deleteSwitchId', 'value'),
     State('backgroundInputId', 'value'),
     State('titleColorInputId', 'value'),
     State('textColorInputId', 'value'),
@@ -177,6 +178,7 @@ def updateCallback(
         pSubjectCreate: str,
         pSubjectLoad: str,
 
+        pDeleteSwitch: bool,
         pBackgroundInput: str,
         pTitleColor: str,
         pTextColor: str,
@@ -185,15 +187,25 @@ def updateCallback(
 ):
     ''' '''
 
-    print('content create', pContentCreate)
-    print('content load', pContentLoad)
-    print('subject create', pSubjectCreate)
-    print('subject load', pSubjectLoad)
+    print(gData) # remove
 
-    print('background', pBackgroundInput)
-    print('title color', pTitleColor)
-    print('text color', pTextColor)
-    print('content', pContent)
+    # if there is create, then load needs to exist
+    # we will insert create AFTER load
+    # if there are no loads- then insert it plainly
+
     print()
+    print('content create: ', pContentCreate)
+    print('content load: ', pContentLoad)
+    print('subject create: ', pSubjectCreate)
+    print('subject load: ', pSubjectLoad)
+
+    print('delete: ', pDeleteSwitch)
+    print('background: ', pBackgroundInput)
+    print('title color: ', pTitleColor)
+    print('text color: ', pTextColor)
+    print('content: ', pContent)
+    print()
+
+
 
     return None

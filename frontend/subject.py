@@ -38,9 +38,11 @@ def subjectFunction(
                 children = [
 
                     # title <
+                    # delete <
                     # background <
                     # title color <
                     dbc.InputGroupText(children = pContentLoad if (pContentLoad) else pContentCreate),
+                    dbc.InputGroupText(dbc.Switch(id = 'deleteSwitchId'), style = dict(paddingBottom = 0)),
                     dbc.Input(
 
                         id = 'backgroundInputId',
