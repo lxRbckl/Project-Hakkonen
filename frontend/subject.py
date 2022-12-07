@@ -30,6 +30,7 @@ def subjectFunction(
         return [
 
             # content <
+            html.Hr(),
             dbc.InputGroup(
 
                 size = 'sm',
@@ -78,23 +79,34 @@ def subjectFunction(
                     dbc.Input(
 
                         id = 'textColorInputId',
-                        placeholder = 'Text Color',
-                        value = pColor if (pColor) else None
+                        value = pColor if (pColor) else None,
+                        disabled = True if (pType in ['space', 'image']) else False,
+                        placeholder = {
 
-                    ) if (pType not in ['space']) else None,
+                            'space' : '',
+                            'image' : '',
+                            'text' : 'Text Color',
+                            'markdown' : 'Text Color',
+                            'subtitle' : 'Text Color'
+
+                        }[pType]
+
+                    ),
                     dbc.Input(
 
                         id = 'contentInputId',
                         value = pContent if (pContent) else None,
+                        disabled = True if (pType in ['space']) else False,
                         placeholder = {
 
+                            'space' : '',
                             'image' : 'Image Link',
                             'markdown' : 'Markdown Link',
                             'subtitle' : 'Subtitle Text'
 
                         }[pType]
 
-                    ) if (pType not in ['space', 'text']) else None,
+                    ) if (pType not in ['text']) else None,
 
                     # >
 

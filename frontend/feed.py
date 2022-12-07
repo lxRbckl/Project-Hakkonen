@@ -107,7 +107,8 @@ def colCallback(pClick, *args):
 
                         children = 'Update',
                         id = 'updateButtonId',
-                        className = 'float-end'
+                        className = 'float-end',
+                        style = dict(marginBottom = '1%')
 
                     )
 
