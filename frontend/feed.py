@@ -155,14 +155,15 @@ def colCallback(pClick, *args):
 @application.callback(
 
     Output('updateButtonId', 'n_clicks'),
+
     Input('updateButtonId', 'n_clicks'),
+    Input('deleteButtonId', 'n_clicks'),
 
     State('contentCreateId', 'value'),
     State('contentLoadId', 'value'),
     State('subjectCreateId', 'value'),
     State('subjectLoadId', 'value'),
 
-    State('deleteSwitchId', 'value'),
     State('backgroundInputId', 'value'),
     State('titleColorInputId', 'value'),
     State('textColorInputId', 'value'),
@@ -172,13 +173,13 @@ def colCallback(pClick, *args):
 def updateCallback(
 
         pClick: int,
+        pDeleteClick: int,
 
         pContentCreate: str,
         pContentLoad: str,
         pSubjectCreate: str,
         pSubjectLoad: str,
 
-        pDeleteSwitch: bool,
         pBackgroundInput: str,
         pTitleColor: str,
         pTextColor: str,
