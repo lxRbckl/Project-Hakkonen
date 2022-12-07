@@ -80,13 +80,21 @@ def subjectFunction(
 
                         id = 'textColorInputId',
                         value = pColor if (pColor) else None,
-                        disabled = True if (pType in ['space', 'image']) else False,
+                        disabled = {
+
+                            'space' : True,
+                            'image' : True,
+                            'text' : False,
+                            'markdown' : True,
+                            'subtitle' : False
+
+                        }[pType],
                         placeholder = {
 
                             'space' : '',
                             'image' : '',
+                            'markdown' : '',
                             'text' : 'Text Color',
-                            'markdown' : 'Text Color',
                             'subtitle' : 'Text Color'
 
                         }[pType]
