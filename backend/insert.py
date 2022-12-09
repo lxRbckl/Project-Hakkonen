@@ -28,16 +28,9 @@ def insertFunction(
     content = None
     subject = None
     whichContent = pContentCreate if (pContentCreate) else pContentLoad
-    templateFeed = jsonLoad(pFile = f'{gDirectory}/backend/template/feed.json')
+    rData = jsonLoad(pFile = f'{gDirectory}/backend/template/feed.json')
     templateContent = jsonLoad(pFile = f'{gDirectory}/backend/template/content.json')
 
-    # >
-
-    # set (rData) <
-    rData = templateFeed
-    rData['feed']['link'] = pLinkInput
-    rData['feed']['image'] = pImageInput
-    rData['feed']['border'] = pBorderInput
 
     # >
 
@@ -45,13 +38,13 @@ def insertFunction(
     # if (insertion) <
     # elif (new) <
     if (pContentLoad): content = list(pData['content'].keys())
+    if (pContentCreate and (not pContentLoad)): content = [pContentCreate]
     if (pContentLoad and pContentCreate): content.insert(
 
         content.index(pContentLoad),
         pContentCreate
 
     )
-    elif (pContentCreate and (not pContentLoad)): content = [pContentCreate]
 
     # >
 
@@ -60,6 +53,7 @@ def insertFunction(
     # elif (new) <
     # elif (existing) <
     if (pSubjectLoad): subject = pData['content'][pContentLoad]['subject']
+    if (pSubjectCreate and (not pSubjectLoad)): subject = [pSubjectCreate]
     if (pSubjectLoad and pSubjectCreate): subject.insert(
 
         pSubjectLoad,
@@ -72,8 +66,7 @@ def insertFunction(
         ]
 
     )
-    elif (pSubjectCreate and (not pSubjectLoad)): subject = [pSubjectCreate]
-    elif (pSubjectLoad and (not pSubjectCreate)):
+    if (pSubjectLoad and (not pSubjectCreate)):
 
         subject[pSubjectLoad] = [
 
@@ -85,7 +78,11 @@ def insertFunction(
 
     # >
 
+    # set (link, image, border) <
     # iterate (content) <
+    rData['feed']['link'] = pLinkInput
+    rData['feed']['image'] = pImageInput
+    rData['feed']['border'] = pBorderInput
     for i, c in enumerate(content):
 
         # if (match) <
@@ -93,14 +90,19 @@ def insertFunction(
         # else then (no subject) <
         if (subject and (c == whichContent)):
 
-            pass
+            rData['feed']['content'][c] = {
 
-        elif (subject and (c != whichContent)):
+                'title' : pTitleColorInput,
+                'background' : pBackgroundInput,
+                'subject' : [s for s in subject] if (subject) else pData['feed']['content'][c]['subject']
 
-            pass
+            }
 
-        else: pass
+        elif (subject and (c != whichContent)): rData['feed']['content'][c] = pData['feed']['content'][c]
+        else: rData['feed']['content'][c] = templateContent
 
         # >
 
     # >
+
+    return rData
