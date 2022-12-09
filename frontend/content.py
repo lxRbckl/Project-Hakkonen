@@ -92,6 +92,7 @@ def contentFunction(pData: dict):
 @application.callback(
 
     Output('subjectLoadId', 'options'),
+
     Input('contentLoadId', 'value')
 
 )
@@ -120,8 +121,10 @@ def contentCallback(pContent: str):
 @application.callback(
 
     Output('subjectDivId', 'children'),
+
     Input('subjectLoadId', 'value'),
     Input('subjectCreateId', 'value'),
+
     State('contentLoadId', 'value'),
     State('contentCreateId', 'value')
 
@@ -130,6 +133,7 @@ def subjectCallback(
 
         pSubjectLoad: str,
         pSubjectCreate: str,
+
         pContentLoad: str,
         pContentCreate: str,
 
@@ -140,18 +144,24 @@ def subjectCallback(
 ):
     '''  '''
 
-    # if (new) <
-    # elif (exiting) <
-    if (pSubjectCreate): subject = [pSubjectCreate, None, None]
-    elif (pSubjectLoad): subject = gData['content'][pContentLoad]['subject'][int(pSubjectLoad)]
+    # if () <
+    # else () <
+    if (pSubjectCreate or pSubjectLoad):
 
-    # >
+        # if (new) <
+        # elif (exiting) <
+        if (pSubjectCreate): subject = [pSubjectCreate, None, None]
+        elif (pSubjectLoad): subject = gData['content'][pContentLoad]['subject'][int(pSubjectLoad)]
 
-    return subjectFunction(
+        # >
 
-        pData = gData,
-        pSubjectLoad = subject,
-        pContentLoad = pContentLoad,
-        pContentCreate = pContentCreate
+        return subjectFunction(
 
-    )
+            pData = gData,
+            pSubjectLoad = subject,
+            pContentLoad = pContentLoad,
+            pContentCreate = pContentCreate
+
+        )
+
+    else: return None

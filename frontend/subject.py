@@ -149,7 +149,7 @@ def subjectFunction(
             # >
 
             # message <
-            dbc.FormText(children = 'Select Update when finished.')
+            dbc.FormText(children = 'Select Update when finished and then refresh.')
 
             # >
 
