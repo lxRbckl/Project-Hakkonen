@@ -209,40 +209,40 @@ def updateCallback(
 
     global gData
 
-    # try if (success) <
-    # except then (failure) <
-    try:
+    # # try if (success) <
+    # # except then (failure) <
+    # try:
 
-        # if (del content) <
-        # elif (del subject) <
-        # elif (add) <
-        if (pContentDel): del gData['content'][pContentLoad]
-        elif (pSubjectDel): del gData['content'][pContentLoad]['subject'][int(pSubjectLoad)]
-        elif (pClick):
+    # if (del content) <
+    # elif (del subject) <
+    # elif (add) <
+    if (pContentDel): del gData['content'][pContentLoad]
+    elif (pSubjectDel): del gData['content'][pContentLoad]['subject'][int(pSubjectLoad)]
+    elif (pClick):
 
-            gData = insertFunction(
+        gData = insertFunction(
 
-                pData = gData,
+            pData = gData,
 
-                pContentLoad = pContentLoad,
-                pSubjectLoad = pSubjectLoad,
-                pContentCreate = pContentCreate,
-                pSubjectCreate = pSubjectCreate,
+            pContentLoad = pContentLoad,
+            pSubjectLoad = pSubjectLoad,
+            pContentCreate = pContentCreate,
+            pSubjectCreate = pSubjectCreate,
 
-                pLinkInput = pLinkInput,
-                pImageInput = pImageInput,
-                pBorderInput = pBorderInput,
-                pContentInput = pContentInput,
-                pTextColorInput = pTextColorInput,
-                pTitleColorInput = pTitleColorInput,
-                pBackgroundInput = pBackgroundInput
+            pLinkInput = pLinkInput,
+            pImageInput = pImageInput,
+            pBorderInput = pBorderInput,
+            pContentInput = pContentInput,
+            pTextColorInput = pTextColorInput,
+            pTitleColorInput = pTitleColorInput,
+            pBackgroundInput = pBackgroundInput
 
-            )
-
-            print(gData)
-
-        # >
-
-    except Exception as e: print(e); return True
+        )
 
     # >
+
+    print(gData) # remove
+
+    # except Exception as e: print(e); return True
+    #
+    # # >

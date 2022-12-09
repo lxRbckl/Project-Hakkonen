@@ -54,7 +54,13 @@ def insertFunction(
     # if (insertion) <
     # elif (existing) <
     if (pSubjectLoad): subject = pData['content'][pContentLoad]['subject']
-    if (pSubjectCreate and (not pSubjectLoad)): subject = [pSubjectCreate]
+    if (pSubjectCreate and (not pSubjectLoad)): subject = [[
+
+        pSubjectCreate,
+        pTextColorInput,
+        pContentInput.split('\n\n') if (pSubjectCreate in ['text']) else pContentInput
+
+    ]]
     if (pSubjectLoad and pSubjectCreate): subject.insert(
 
         int(pSubjectLoad),
@@ -67,15 +73,13 @@ def insertFunction(
         ]
 
     )
-    if (pSubjectLoad and (not pSubjectCreate)):
-
-        subject[int(pSubjectLoad)] = [
+    if (pSubjectLoad and (not pSubjectCreate)): subject[int(pSubjectLoad)] = [
 
             pData['content'][pContentLoad]['subject'][int(pSubjectLoad)][0],
             pTextColorInput,
             pContentInput
 
-        ]
+    ]
 
     # >
 
@@ -89,14 +93,14 @@ def insertFunction(
         # if (match) <
         # elif (not match) <
         # else then (no subject) <
-        if (subject): subject = pData['content'][c]['subject']
+        [print(s) for s in subject]
         if (subject and (c == whichContent)):
 
             rData['feed']['content'][c] = {
 
                 'title' : pTitleColorInput,
                 'background' : pBackgroundInput,
-                'subject' : [s for s in subject] if (subject) else pData
+                'subject' : [s for s in subject] if (subject) else pData['content'][c]['subject']
 
             }
 
