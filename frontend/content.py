@@ -136,12 +136,20 @@ def subjectCallback(
 ):
     '''  '''
 
-    # try if (existing) <
-    # except then (new) <
-    # finally (return subject) <
-    try: subject = gData['content'][pContentLoad]['subject'][int(pSubjectLoad)]
-    except: subject = [pSubjectCreate, None, None]
-    finally: return subjectFunction(
+    print(pSubjectLoad)
+    print(pSubjectCreate)
+    print(pContentLoad)
+    print(pContentCreate)
+    print('------------')
+
+    # if (new) <
+    # elif (exiting) <
+    if (pSubjectCreate): subject = [pSubjectCreate, None, None]
+    elif (pSubjectLoad): subject = gData['content'][pContentLoad]['subject'][int(pSubjectLoad)]
+
+    # >
+
+    return subjectFunction(
 
         pData = gData,
         pSubjectLoad = subject,

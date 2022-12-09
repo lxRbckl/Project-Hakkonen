@@ -41,7 +41,13 @@ def subjectFunction(
                     # title <
                     # background <
                     # title color <
-                    dbc.Button(id = 'deleteButtonId', children = '🗑', color = 'danger'),
+                    dbc.Button(
+
+                        children = '🗑',
+                        color = 'danger',
+                        id = 'contentDelButtonId'
+
+                    ),
                     dbc.InputGroupText(children = pContentLoad if (pContentLoad) else pContentCreate),
                     dbc.Input(
 
@@ -66,6 +72,7 @@ def subjectFunction(
 
             # >
 
+            # del <
             # subject <
             # text color <
             dbc.InputGroup(
@@ -77,6 +84,13 @@ def subjectFunction(
                     # type <
                     # color <
                     # content <
+                    dbc.Button(
+
+                        children = '🗑',
+                        color = 'danger',
+                        id = 'subjectDelButtonId'
+
+                    ),
                     dbc.InputGroupText(children = pType.title()),
                     dbc.Input(
 

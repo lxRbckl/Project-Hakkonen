@@ -157,7 +157,8 @@ def colCallback(pClick, *args):
     Output('updateButtonId', 'n_clicks'),
 
     Input('updateButtonId', 'n_clicks'),
-    Input('deleteButtonId', 'n_clicks'),
+    Input('contentDelButtonId', 'n_clicks'),
+    Input('subjectDelButtonId', 'n_clicks'),
 
     State('contentCreateId', 'value'),
     State('contentLoadId', 'value'),
@@ -173,7 +174,8 @@ def colCallback(pClick, *args):
 def updateCallback(
 
         pClick: int,
-        pDeleteClick: int,
+        pContentDel: int,
+        pSubjectDel: int,
 
         pContentCreate: str,
         pContentLoad: str,
@@ -188,25 +190,51 @@ def updateCallback(
 ):
     ''' '''
 
-    print(gData) # remove
+    # print(gData) # remove
 
     # if there is create, then load needs to exist
     # we will insert create AFTER load
     # if there are no loads- then insert it plainly
 
-    print()
-    print('content create: ', pContentCreate)
-    print('content load: ', pContentLoad)
-    print('subject create: ', pSubjectCreate)
-    print('subject load: ', pSubjectLoad)
+    # print()
+    # print('content del: ', pContentDel)
+    # print('subject del: ', pSubjectDel)
+    # print('--------------------------')
+    #
+    # print('content create: ', pContentCreate)
+    # print('content load: ', pContentLoad)
+    # print('subject create: ', pSubjectCreate)
+    # print('subject load: ', pSubjectLoad)
+    #
+    # print('background: ', pBackgroundInput)
+    # print('title color: ', pTitleColor)
+    # print('text color: ', pTextColor)
+    # print('content: ', pContent)
+    # print()
 
-    print('delete: ', pDeleteSwitch)
-    print('background: ', pBackgroundInput)
-    print('title color: ', pTitleColor)
-    print('text color: ', pTextColor)
-    print('content: ', pContent)
-    print()
+    # if (del) <
+    # elif (add) <
+    if (pContentDel): del gData['content'][pContentLoad]
+    elif (pSubjectDel): del gData['content'][pSubjectLoad]['subject'][pSubjectLoad]
+    elif (pClick): pass
 
+        # subject = [pContent]
+        #
+        # # if (create content) <
+        # # if (create subject) <
+        # if (pContentCreate and pContentLoad):
+        #
+        #     b = False
+        #     for c in gData[]
+        #
+        # if (pSubjectCreate and pSubjectLoad):
+        #
+        #     pass
+        #
+        # # >
 
+        #
+
+    # >
 
     return None
