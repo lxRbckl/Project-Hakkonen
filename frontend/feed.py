@@ -221,6 +221,8 @@ def updateCallback(
 
             data = insertFunction(
 
+                pData = gData,
+
                 pContentLoad = pContentLoad,
                 pSubjectLoad = pSubjectLoad,
                 pContentCreate = pContentCreate,
@@ -239,7 +241,7 @@ def updateCallback(
         # >
 
         # update <
-
+        print(data) # remove
 
         # >
 
