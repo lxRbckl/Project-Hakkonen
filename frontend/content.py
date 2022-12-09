@@ -136,12 +136,6 @@ def subjectCallback(
 ):
     '''  '''
 
-    print(pSubjectLoad)
-    print(pSubjectCreate)
-    print(pContentLoad)
-    print(pContentCreate)
-    print('------------')
-
     # if (new) <
     # elif (exiting) <
     if (pSubjectCreate): subject = [pSubjectCreate, None, None]
@@ -157,5 +151,3 @@ def subjectCallback(
         pContentCreate = pContentCreate
 
     )
-
-    # >

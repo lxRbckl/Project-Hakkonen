@@ -5,6 +5,7 @@ import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output, State
 from lxRbckl import githubGet, jsonLoad, githubCreate, githubSet
 
+from backend.insert import  insertFunction
 from frontend.content import contentFunction
 from backend.resource import application, gGithub, gUser, gDirectory
 
@@ -96,8 +97,18 @@ def colCallback(pClick, *args):
                     # >
 
                     # content <
+                    # warning <
                     html.Hr(),
                     html.Div(children = contentFunction(pData = gData)),
+                    dbc.Alert(
+
+                        is_open = False,
+                        color = 'danger',
+                        dismissable = True,
+                        id = 'warningAlertId',
+                        children = 'There was an error updating the feed.json file.'
+
+                    ),
 
                     # >
 
@@ -154,21 +165,25 @@ def colCallback(pClick, *args):
 
 @application.callback(
 
-    Output('updateButtonId', 'n_clicks'),
+    Output('warningAlertId', 'is_open'),
 
     Input('updateButtonId', 'n_clicks'),
     Input('contentDelButtonId', 'n_clicks'),
     Input('subjectDelButtonId', 'n_clicks'),
 
-    State('contentCreateId', 'value'),
     State('contentLoadId', 'value'),
-    State('subjectCreateId', 'value'),
     State('subjectLoadId', 'value'),
+    State('contentCreateId', 'value'),
+    State('subjectCreateId', 'value'),
 
-    State('backgroundInputId', 'value'),
-    State('titleColorInputId', 'value'),
+    State('linkInputId', 'value'),
+    State('imageInputId', 'value'),
+    State('borderInputId', 'value'),
+    State('contentInputId', 'value'),
     State('textColorInputId', 'value'),
-    State('contentInputId', 'value')
+    State('titleColorInputId', 'value'),
+    State('backgroundInputId', 'value'),
+
 
 )
 def updateCallback(
@@ -177,64 +192,135 @@ def updateCallback(
         pContentDel: int,
         pSubjectDel: int,
 
-        pContentCreate: str,
         pContentLoad: str,
-        pSubjectCreate: str,
         pSubjectLoad: str,
+        pContentCreate: str,
+        pSubjectCreate: str,
 
-        pBackgroundInput: str,
-        pTitleColor: str,
-        pTextColor: str,
-        pContent: str
+        pLinkInput: str,
+        pImageInput: str,
+        pBorderInput: str,
+        pContentInput: str,
+        pTextColorInput: str,
+        pTitleColorInput: str,
+        pBackgroundInput: str
 
 ):
     ''' '''
 
-    # print(gData) # remove
+    # try if (success) <
+    # except then (failure) <
+    try:
 
-    # if there is create, then load needs to exist
-    # we will insert create AFTER load
-    # if there are no loads- then insert it plainly
+        # if (del content) <
+        # if (del subject) <
+        # elif (add) <
+        if (pContentDel): del gData['content'][pContentLoad]
+        if (pSubjectDel): del gData['content'][pSubjectLoad]['subject'][pSubjectLoad]
+        elif (pClick):
 
-    # print()
-    # print('content del: ', pContentDel)
-    # print('subject del: ', pSubjectDel)
-    # print('--------------------------')
-    #
-    # print('content create: ', pContentCreate)
-    # print('content load: ', pContentLoad)
-    # print('subject create: ', pSubjectCreate)
-    # print('subject load: ', pSubjectLoad)
-    #
-    # print('background: ', pBackgroundInput)
-    # print('title color: ', pTitleColor)
-    # print('text color: ', pTextColor)
-    # print('content: ', pContent)
-    # print()
+            data = insertFunction(
 
-    # if (del) <
-    # elif (add) <
-    if (pContentDel): del gData['content'][pContentLoad]
-    elif (pSubjectDel): del gData['content'][pSubjectLoad]['subject'][pSubjectLoad]
-    elif (pClick): pass
+                pContentLoad = pContentLoad,
+                pSubjectLoad = pSubjectLoad,
+                pContentCreate = pContentCreate,
+                pSubjectCreate = pSubjectCreate,
 
-        # subject = [pContent]
-        #
-        # # if (create content) <
-        # # if (create subject) <
-        # if (pContentCreate and pContentLoad):
-        #
-        #     b = False
-        #     for c in gData[]
-        #
-        # if (pSubjectCreate and pSubjectLoad):
-        #
-        #     pass
-        #
-        # # >
+                pLinkInput = pLinkInput,
+                pImageInput = pImageInput,
+                pBorderInput = pBorderInput,
+                pContentInput = pContentInput,
+                pTextColorInput = pTextColorInput,
+                pTitleColorInput = pTitleColorInput,
+                pBackgroundInput = pBackgroundInput
 
-        #
+            )
+
+        # >
+
+        # update <
+
+
+        # >
+
+        return False
+
+    except: return True
 
     # >
 
-    return None
+    # # if (del content) <
+    # # if (del subject) <
+    # # elif (add) <
+    # if (pContentDel): del gData['content'][pContentLoad]
+    # if (pSubjectDel): del gData['content'][pSubjectLoad]['subject'][pSubjectLoad]
+    # elif (pClick):
+    #
+    #     try:
+    #
+    #         # subject = [pSubjectCreate, pTextColorInput, pContentInput]
+    #         feed = jsonLoad(pFile = f'{gDirectory}/backend/template/feed.json')
+    #         content = jsonLoad(pFile = f'{gDirectory}/backend/template/content.json')
+    #
+    #         rData = feed
+    #         rData['feed']['link'] = pLinkInput
+    #         rData['feed']['image'] = pImageInput
+    #         rData['feed']['border'] = pBorderInput
+    #
+    #         # if (create content fresh) <
+    #         # if (create subject fresh) <
+    #         # if (create content existing) <
+    #         # if (create subject existing) <
+    #         if (pContentCreate and (not pContentLoad)): sort = [pContentCreate]
+    #         if (pSubjectCreate and (not pSubjectLoad)): sort =
+    #
+    #         # >
+    #
+    #         # # if (create independent content) <
+    #         # # if (create independent subject) <
+    #         # # if (create dependent content) <
+    #         # # if (create dependent subject) <
+    #         #
+    #         #
+    #         # if (pContentCreate and pContentLoad):
+    #         #
+    #         #     index = list(gData['content'].keys()).index(pContentLoad)
+    #         #     for c, k in enumerate(gData['content'].keys()):
+    #         #
+    #         #         if (index == c):
+    #         #
+    #         #             rData['feed']['content'] =
+    #         #
+    #         #         else: pass
+    #         #
+    #         # if (pSubjectCreate and pSubjectLoad):
+    #         #
+    #         #     index = pSubjectLoad
+    #         #
+    #         # # >
+    #
+    #         return False
+    #
+    #     except: return True
+    #
+    # # >
+    #
+    # # # if (del) <
+    # # # elif (add) <
+    # # if (pContentDel): del gData['content'][pContentLoad]
+    # # elif (pSubjectDel): del gData['content'][pSubjectLoad]['subject'][pSubjectLoad]
+    # # elif (pClick):
+    # #
+    # #     # if (create content) <
+    # #     # if (create subject) <
+    # #     if (pContentCreate): index = list(gData['content'].keys()).index(pContentLoad)
+    # #     if (pSubjectCreate): index = pSubjectLoad
+    # #
+    # #     # >
+    # #
+    # #     subject = [pSubjectCreate, pTextColor, pContent]
+    # #
+    # #
+    # # # >
+    # #
+    # # return None
