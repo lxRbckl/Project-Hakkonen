@@ -214,10 +214,6 @@ def updateCallback(
     # except then (failure) <
     try:
 
-        print('content del', pContentDel)
-        print('subject del', pSubjectDel)
-        print('click', pClick) # remove
-
         # if (del content) <
         # elif (del subject) <
         # elif (add) <
@@ -245,6 +241,8 @@ def updateCallback(
             )
 
         # >
+
+        print(gData) # remove
 
         color, children = 'success', 'The feed.json was successfully updated. Please refresh.'
 

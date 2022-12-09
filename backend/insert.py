@@ -53,7 +53,7 @@ def insertFunction(
     # if (new) <
     # if (insertion) <
     # elif (existing) <
-    if (pSubjectLoad): subject = pData['content'][pContentLoad]['subject']
+    if (pSubjectLoad and (not pContentCreate)): subject = pData['content'][pContentLoad]['subject']
     if (pSubjectCreate and (not pSubjectLoad)): subject = [[
 
         pSubjectCreate,
