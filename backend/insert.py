@@ -1,5 +1,7 @@
 # import <
+from lxRbckl import jsonLoad
 
+from backend.resource import gDirectory
 
 # >
 
@@ -31,12 +33,11 @@ def insertFunction(
     rData = jsonLoad(pFile = f'{gDirectory}/backend/template/feed.json')
     templateContent = jsonLoad(pFile = f'{gDirectory}/backend/template/content.json')
 
-
     # >
 
     # if (content) <
+    # if (new) <
     # if (insertion) <
-    # elif (new) <
     if (pContentLoad): content = list(pData['content'].keys())
     if (pContentCreate and (not pContentLoad)): content = [pContentCreate]
     if (pContentLoad and pContentCreate): content.insert(
@@ -49,28 +50,28 @@ def insertFunction(
     # >
 
     # if (subject) <
+    # if (new) <
     # if (insertion) <
-    # elif (new) <
     # elif (existing) <
     if (pSubjectLoad): subject = pData['content'][pContentLoad]['subject']
     if (pSubjectCreate and (not pSubjectLoad)): subject = [pSubjectCreate]
     if (pSubjectLoad and pSubjectCreate): subject.insert(
 
-        pSubjectLoad,
+        int(pSubjectLoad),
         [
 
             pSubjectCreate,
             pTextColorInput,
-            pContentInput
+            pContentInput.split('\n\n') if (pSubjectCreate in ['text']) else pContentInput
 
         ]
 
     )
     if (pSubjectLoad and (not pSubjectCreate)):
 
-        subject[pSubjectLoad] = [
+        subject[int(pSubjectLoad)] = [
 
-            pSubjectLoad,
+            pData['content'][pContentLoad]['subject'][int(pSubjectLoad)][0],
             pTextColorInput,
             pContentInput
 
@@ -94,11 +95,11 @@ def insertFunction(
 
                 'title' : pTitleColorInput,
                 'background' : pBackgroundInput,
-                'subject' : [s for s in subject] if (subject) else pData['feed']['content'][c]['subject']
+                'subject' : [s for s in subject] if (subject) else pData['content'][c]['subject']
 
             }
 
-        elif (subject and (c != whichContent)): rData['feed']['content'][c] = pData['feed']['content'][c]
+        elif (subject and (c != whichContent)): rData['feed']['content'][c] = pData['content'][c]
         else: rData['feed']['content'][c] = templateContent
 
         # >

@@ -166,6 +166,7 @@ def colCallback(pClick, *args):
 @application.callback(
 
     Output('warningAlertId', 'is_open'),
+    Output('updateButtonId', 'n_clicks'),
 
     Input('updateButtonId', 'n_clicks'),
     Input('contentDelButtonId', 'n_clicks'),
@@ -208,45 +209,70 @@ def updateCallback(
 ):
     ''' '''
 
-    # try if (success) <
-    # except then (failure) <
-    try:
+    data = insertFunction(
 
-        # if (del content) <
-        # if (del subject) <
-        # elif (add) <
-        if (pContentDel): del gData['content'][pContentLoad]
-        if (pSubjectDel): del gData['content'][pSubjectLoad]['subject'][pSubjectLoad]
-        elif (pClick):
+        pData = gData,
 
-            data = insertFunction(
+        pContentLoad = pContentLoad,
+        pSubjectLoad = pSubjectLoad,
+        pContentCreate = pContentCreate,
+        pSubjectCreate = pSubjectCreate,
 
-                pData = gData,
+        pLinkInput = pLinkInput,
+        pImageInput = pImageInput,
+        pBorderInput = pBorderInput,
+        pContentInput = pContentInput,
+        pTextColorInput = pTextColorInput,
+        pTitleColorInput = pTitleColorInput,
+        pBackgroundInput = pBackgroundInput
 
-                pContentLoad = pContentLoad,
-                pSubjectLoad = pSubjectLoad,
-                pContentCreate = pContentCreate,
-                pSubjectCreate = pSubjectCreate,
+    )
 
-                pLinkInput = pLinkInput,
-                pImageInput = pImageInput,
-                pBorderInput = pBorderInput,
-                pContentInput = pContentInput,
-                pTextColorInput = pTextColorInput,
-                pTitleColorInput = pTitleColorInput,
-                pBackgroundInput = pBackgroundInput
+    print(data)
 
-            )
+    return (False, 0)
 
-        # >
-
-        # # update <
-        # print(data) # remove
-        #
-        # # >
-
-        return False
-
-    except Exception as e: print(e); return True
-
-    # >
+    # # try if (success) <
+    # # except then (failure) <
+    # try:
+    #
+    #     # if (del content) <
+    #     # if (del subject) <
+    #     # elif (add) <
+    #     if (pContentDel): del gData['content'][pContentLoad]
+    #     if (pSubjectDel): del gData['content'][pSubjectLoad]['subject'][pSubjectLoad]
+    #     elif (pClick):
+    #
+    #         data = insertFunction(
+    #
+    #             pData = gData,
+    #
+    #             pContentLoad = pContentLoad,
+    #             pSubjectLoad = pSubjectLoad,
+    #             pContentCreate = pContentCreate,
+    #             pSubjectCreate = pSubjectCreate,
+    #
+    #             pLinkInput = pLinkInput,
+    #             pImageInput = pImageInput,
+    #             pBorderInput = pBorderInput,
+    #             pContentInput = pContentInput,
+    #             pTextColorInput = pTextColorInput,
+    #             pTitleColorInput = pTitleColorInput,
+    #             pBackgroundInput = pBackgroundInput
+    #
+    #         )
+    #
+    #         print(data)
+    #
+    #     # >
+    #
+    #     # # update <
+    #     # print(data) # remove
+    #     #
+    #     # # >
+    #
+    #     return False
+    #
+    # except Exception as e: print(e); return True
+    #
+    # # >
