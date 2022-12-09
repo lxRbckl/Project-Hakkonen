@@ -27,6 +27,7 @@ def insertFunction(
     # local <
     content = None
     subject = None
+    whichContent = pContentCreate if (pContentCreate) else pContentLoad
     templateFeed = jsonLoad(pFile = f'{gDirectory}/backend/template/feed.json')
     templateContent = jsonLoad(pFile = f'{gDirectory}/backend/template/content.json')
 
@@ -43,7 +44,7 @@ def insertFunction(
     # if (content) <
     # if (insertion) <
     # elif (new) <
-    if (pContentLoad or pContentCreate): content = list(pData['content'].keys())
+    if (pContentLoad): content = list(pData['content'].keys())
     if (pContentLoad and pContentCreate): content.insert(
 
         content.index(pContentLoad),
@@ -58,7 +59,7 @@ def insertFunction(
     # if (insertion) <
     # elif (new) <
     # elif (existing) <
-    if (pSubjectLoad or pSubjectCreate): subject = pData['content'][pContentLoad]['subject']
+    if (pSubjectLoad): subject = pData['content'][pContentLoad]['subject']
     if (pSubjectLoad and pSubjectCreate): subject.insert(
 
         pSubjectLoad,
@@ -84,12 +85,22 @@ def insertFunction(
 
     # >
 
-    # try if (content and subject) <
-    # except then (only content) <
-    try:
+    # iterate (content) <
+    for i, c in enumerate(content):
 
-        pass
+        # if (match) <
+        # elif (not match) <
+        # else then (no subject) <
+        if (subject and (c == whichContent)):
 
-    except: pass
+            pass
+
+        elif (subject and (c != whichContent)):
+
+            pass
+
+        else: pass
+
+        # >
 
     # >
