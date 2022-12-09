@@ -217,7 +217,7 @@ def updateCallback(
         # elif (del subject) <
         # elif (add) <
         if (pContentDel): del gData['content'][pContentLoad]
-        elif (pSubjectDel): del gData['content'][pSubjectLoad]['subject'][pSubjectLoad]
+        elif (pSubjectDel): del gData['content'][pContentLoad]['subject'][int(pSubjectLoad)]
         elif (pClick):
 
             gData = insertFunction(
