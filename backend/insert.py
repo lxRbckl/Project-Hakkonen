@@ -89,13 +89,14 @@ def insertFunction(
         # if (match) <
         # elif (not match) <
         # else then (no subject) <
+        if (subject): subject = pData['content'][c]['subject']
         if (subject and (c == whichContent)):
 
             rData['feed']['content'][c] = {
 
                 'title' : pTitleColorInput,
                 'background' : pBackgroundInput,
-                'subject' : [s for s in subject] if (subject) else pData['content'][c]['subject']
+                'subject' : [s for s in subject] if (subject) else pData
 
             }
 
