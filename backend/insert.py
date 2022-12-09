@@ -93,13 +93,3 @@ def insertFunction(
     except: pass
 
     # >
-
-    # # iterate (content) <
-    # for i, c in enumerate(content):
-    #
-    #     if (subject): pass
-    #     else: pass
-    #
-    # # >
-    #
-    # return rData
