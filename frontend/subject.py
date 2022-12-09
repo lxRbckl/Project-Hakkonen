@@ -22,6 +22,8 @@ def subjectFunction(
 
     # >
 
+    print(pContent) # remove
+
     # if (boot) <
     # else (input) <
     if (not pType): return None
@@ -141,8 +143,8 @@ def subjectFunction(
 
                 placeholder = 'Text',
                 id = 'contentInputId',
-                style = dict(height = '15vh'),
-                value = pContent if (pContent) else None
+                style = dict(height = '25vh'),
+                value = '\n\n'.join(pContent) if (pContent) else None
 
             ) if (pType in ['text']) else None,
 
