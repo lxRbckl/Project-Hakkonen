@@ -240,13 +240,13 @@ def updateCallback(
 
         # >
 
-        # update <
-        print(data) # remove
-
-        # >
+        # # update <
+        # print(data) # remove
+        #
+        # # >
 
         return False
 
-    except: return True
+    except Exception as e: print(e); return True
 
     # >

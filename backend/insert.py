@@ -25,6 +25,8 @@ def insertFunction(
     '''  '''
 
     # local <
+    content = None
+    subject = None
     templateFeed = jsonLoad(pFile = f'{gDirectory}/backend/template/feed.json')
     templateContent = jsonLoad(pFile = f'{gDirectory}/backend/template/content.json')
 
@@ -38,41 +40,66 @@ def insertFunction(
 
     # >
 
+    # if (content) <
+    # if (insertion) <
+    # elif (new) <
+    if (pContentLoad or pContentCreate): content = list(pData['content'].keys())
+    if (pContentLoad and pContentCreate): content.insert(
+
+        content.index(pContentLoad),
+        pContentCreate
+
+    )
+    elif (pContentCreate and (not pContentLoad)): content = [pContentCreate]
+
+    # >
+
+    # if (subject) <
+    # if (insertion) <
+    # elif (new) <
+    # elif (existing) <
+    if (pSubjectLoad or pSubjectCreate): subject = pData['content'][pContentLoad]['subject']
+    if (pSubjectLoad and pSubjectCreate): subject.insert(
+
+        pSubjectLoad,
+        [
+
+            pSubjectCreate,
+            pTextColorInput,
+            pContentInput
+
+        ]
+
+    )
+    elif (pSubjectCreate and (not pSubjectLoad)): subject = [pSubjectCreate]
+    elif (pSubjectLoad and (not pSubjectCreate)):
+
+        subject[pSubjectLoad] = [
+
+            pSubjectLoad,
+            pTextColorInput,
+            pContentInput
+
+        ]
+
+    # >
+
     # try if (content and subject) <
     # except then (only content) <
     try:
 
-        content = list(pData['content'].keys())
-        subject = pData['content'][pContentLoad]['subject']
+        pass
 
-    except: subject = None
-
-    # >
-
-    # if (independent content) <
-    # if (independent subject) <
-    # if (dependent content) <
-    # if (dependent subject) <
-    if (pContentCreate and (not pContentLoad)): contentIndex = 0
-    if (subject and pSubjectCreate and (not pSubjectLoad)): subjectIndex = 0
-    if (pContentCreate and pContentLoad): contentIndex = content.index(pContentLoad)
-    if (subject and pSubjectCreate and pSubjectLoad): subjectIndex = subject.index(pSubjectLoad)
+    except: pass
 
     # >
 
+    # # iterate (content) <
+    # for i, c in enumerate(content):
     #
-
-    return rData
-
-
-
-
-
-
-
-
-
-
-
-
-
+    #     if (subject): pass
+    #     else: pass
+    #
+    # # >
+    #
+    # return rData
