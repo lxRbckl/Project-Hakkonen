@@ -214,6 +214,10 @@ def updateCallback(
     # except then (failure) <
     try:
 
+        print('content del', pContentDel)
+        print('subject del', pSubjectDel)
+        print('click', pClick) # remove
+
         # if (del content) <
         # elif (del subject) <
         # elif (add) <
@@ -245,6 +249,11 @@ def updateCallback(
         color, children = 'success', 'The feed.json was successfully updated. Please refresh.'
 
     except: color, children = 'danger', 'There was an error updating the feed.json file.'
-    finally: return (color, True, children, True)
+    finally: return {
+
+        True : (color, True, children, True),
+        False : (color, False, children, False)
+
+    }[(pClick or pContentDel or pSubjectDel)]
 
     # >

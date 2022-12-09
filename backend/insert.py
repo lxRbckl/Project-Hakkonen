@@ -93,7 +93,6 @@ def insertFunction(
         # if (match) <
         # elif (not match) <
         # else then (no subject) <
-        [print(s) for s in subject]
         if (subject and (c == whichContent)):
 
             rData['feed']['content'][c] = {
