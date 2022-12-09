@@ -202,22 +202,22 @@ def updateCallback(
         pContentInput: str,
         pTextColorInput: str,
         pTitleColorInput: str,
-        pBackgroundInput: str,
-
-        prevent_initial_call = True
+        pBackgroundInput: str
 
 ):
     ''' '''
+
+    global gData
 
     # try if (success) <
     # except then (failure) <
     try:
 
         # if (del content) <
-        # if (del subject) <
+        # elif (del subject) <
         # elif (add) <
         if (pContentDel): del gData['content'][pContentLoad]
-        if (pSubjectDel): del gData['content'][pSubjectLoad]['subject'][pSubjectLoad]
+        elif (pSubjectDel): del gData['content'][pSubjectLoad]['subject'][pSubjectLoad]
         elif (pClick):
 
             gData = insertFunction(
@@ -239,14 +239,9 @@ def updateCallback(
 
             )
 
-        # >
-
-        # update <
-        print(gData) # remove
+            print(gData)
 
         # >
-
-        return False
 
     except Exception as e: print(e); return True
 
