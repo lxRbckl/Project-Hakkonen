@@ -98,6 +98,8 @@ def contentFunction(pData: dict):
 def contentCallback(pContent: str):
     '''  '''
 
+    # if (boot) <
+    # else (load) <
     if (not pContent): return None
     else:
 
@@ -111,6 +113,8 @@ def contentCallback(pContent: str):
             }
 
         for c, i in enumerate(gData['content'][pContent]['subject'])]
+
+    # >
 
 
 @application.callback(

@@ -153,25 +153,20 @@ def submitCallback(
 ):
     '''  '''
 
-    # if (click) <
-    if (pClick):
+    # set (token) <
+    # update token <
+    token = jsonLoad(pFile = f'{gDirectory}/backend/data/token.json')
+    for t, u in zip(args, gUser): token[u] = t
 
-        # set (token) <
-        # update token <
-        token = jsonLoad(pFile = f'{gDirectory}/backend/data/token.json')
-        for t, u in zip(args, gUser): token[u] = t
+    # >
 
-        # >
+    # if (click) then update <
+    if (pClick): jsonDump(
 
-        # update <
-        jsonDump(
+        pData = token,
+        pFile = f'{gDirectory}/backend/data/token.json'
 
-            pData = token,
-            pFile = f'{gDirectory}/backend/data/token.json'
-
-        )
-
-        # >
+    )
 
     # >
 

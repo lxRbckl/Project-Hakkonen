@@ -97,9 +97,14 @@ def colCallback(pClick, *args):
                     # >
 
                     # content <
-                    # warning <
                     html.Hr(),
                     html.Div(children = contentFunction(pData = gData)),
+                    html.Hr(),
+
+                    # >
+
+                    # warning <
+                    # update <
                     dbc.Alert(
 
                         is_open = False,
@@ -109,11 +114,6 @@ def colCallback(pClick, *args):
                         children = 'There was an error updating the feed.json file.'
 
                     ),
-
-                    # >
-
-                    # update <
-                    html.Hr(),
                     dbc.Button(
 
                         children = 'Update',

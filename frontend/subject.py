@@ -22,8 +22,6 @@ def subjectFunction(
 
     # >
 
-    print(pContent) # remove
-
     # if (boot) <
     # else (input) <
     if (not pType): return None
