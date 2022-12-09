@@ -23,7 +23,6 @@ def projectFunction():
 @application.callback(
 
     Output('projectColId', 'children'),
-
     Input('projectColId', 'children')
 
 )
@@ -142,9 +141,7 @@ def colCallback(pChildren: list):
 @application.callback(
 
     [Output(f'{u}InputId', 'value') for u in gUser],
-
     Input('submitButtonId', 'n_clicks'),
-
     [State(f'{u}InputId', 'value') for u in gUser]
 
 )

@@ -108,10 +108,8 @@ def colCallback(pClick, *args):
                     dbc.Alert(
 
                         is_open = False,
-                        color = 'danger',
                         dismissable = True,
-                        id = 'warningAlertId',
-                        children = 'There was an error updating the feed.json file.'
+                        id = 'warningAlertId'
 
                     ),
                     dbc.Button(
@@ -165,7 +163,10 @@ def colCallback(pClick, *args):
 
 @application.callback(
 
+    Output('warningAlertId', 'color'),
     Output('warningAlertId', 'is_open'),
+    Output('warningAlertId', 'children'),
+    Output('updateButtonId', 'disabled'),
 
     Input('updateButtonId', 'n_clicks'),
     Input('contentDelButtonId', 'n_clicks'),
@@ -209,40 +210,41 @@ def updateCallback(
 
     global gData
 
-    # # try if (success) <
-    # # except then (failure) <
-    # try:
+    # try if (success) <
+    # except then (failure) <
+    try:
 
-    # if (del content) <
-    # elif (del subject) <
-    # elif (add) <
-    if (pContentDel): del gData['content'][pContentLoad]
-    elif (pSubjectDel): del gData['content'][pContentLoad]['subject'][int(pSubjectLoad)]
-    elif (pClick):
+        # if (del content) <
+        # elif (del subject) <
+        # elif (add) <
+        if (pContentDel): del gData['content'][pContentLoad]
+        elif (pSubjectDel): del gData['content'][pContentLoad]['subject'][int(pSubjectLoad)]
+        elif (pClick):
 
-        gData = insertFunction(
+            gData = insertFunction(
 
-            pData = gData,
+                pData = gData,
 
-            pContentLoad = pContentLoad,
-            pSubjectLoad = pSubjectLoad,
-            pContentCreate = pContentCreate,
-            pSubjectCreate = pSubjectCreate,
+                pContentLoad = pContentLoad,
+                pSubjectLoad = pSubjectLoad,
+                pContentCreate = pContentCreate,
+                pSubjectCreate = pSubjectCreate,
 
-            pLinkInput = pLinkInput,
-            pImageInput = pImageInput,
-            pBorderInput = pBorderInput,
-            pContentInput = pContentInput,
-            pTextColorInput = pTextColorInput,
-            pTitleColorInput = pTitleColorInput,
-            pBackgroundInput = pBackgroundInput
+                pLinkInput = pLinkInput,
+                pImageInput = pImageInput,
+                pBorderInput = pBorderInput,
+                pContentInput = pContentInput,
+                pTextColorInput = pTextColorInput,
+                pTitleColorInput = pTitleColorInput,
+                pBackgroundInput = pBackgroundInput
 
-        )
+            )
+
+        # >
+
+        color, children = 'success', 'The feed.json was successfully updated. Please refresh.'
+
+    except: color, children = 'danger', 'There was an error updating the feed.json file.'
+    finally: return (color, True, children, True)
 
     # >
-
-    print(gData) # remove
-
-    # except Exception as e: print(e); return True
-    #
-    # # >
