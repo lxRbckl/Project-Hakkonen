@@ -35,6 +35,6 @@ application.layout = dbc.Container(
 
 
 # main <
-if (__name__ == '__main__'): application.run_server(debug = True)
+if (__name__ == '__main__'): application.run_server()
 
 # >
