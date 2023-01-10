@@ -148,7 +148,7 @@ def colCallback(pClick, *args):
                 pBranch = 'main',
                 pFile = 'feed.json',
                 pRepository = repository,
-                pMessage = 'Added feed.json by Project Hakkonen',
+                pMessage = 'Created by Project Hakkonen',
                 pGithub = Github(token[repository.split('/')[0]])
 
             )
@@ -261,6 +261,7 @@ def updateCallback(
             pData = gData,
             pFile = 'feed.json',
             pRepository = pHeader.replace(' ', '-'),
+            pMessage = 'Updated by Project Hakkonen',
             pGithub = Github(jsonLoad(pFile = f'{gDirectory}/backend/data/token.json')[pHeader.split('/')[0]])
 
         )
