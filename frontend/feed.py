@@ -3,7 +3,7 @@ from github import Github
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output, State
-from lxRbckl import githubGet, jsonLoad, githubCreate, githubSet
+from lxRbckl import jsonLoad, githubGet, githubCreate, githubSet
 
 from backend.insert import  insertFunction
 from frontend.content import contentFunction
@@ -64,7 +64,12 @@ def colCallback(pClick, *args):
                 return [
 
                     # header <
-                    html.H2(children = c.split('/')[1].replace('-', ' ')),
+                    html.H2(
+
+                        id = 'headerH2Id',
+                        children = c.replace('-', ' ')
+
+                    ),
                     html.Hr(style = dict(marginTop = '0.5%')),
 
                     # >
@@ -172,6 +177,8 @@ def colCallback(pClick, *args):
     Input('contentDelButtonId', 'n_clicks'),
     Input('subjectDelButtonId', 'n_clicks'),
 
+    State('headerH2Id', 'children'),
+
     State('contentLoadId', 'value'),
     State('subjectLoadId', 'value'),
     State('contentCreateId', 'value'),
@@ -191,6 +198,8 @@ def updateCallback(
         pClick: int,
         pContentDel: int,
         pSubjectDel: int,
+
+        pHeader: str,
 
         pContentLoad: str,
         pSubjectLoad: str,
@@ -242,16 +251,25 @@ def updateCallback(
 
         # >
 
-        print(gData) # remove
-
         color, children = 'success', 'The feed.json was successfully updated. Please refresh.'
 
     except: color, children = 'danger', 'There was an error updating the feed.json file.'
-    finally: return {
+    finally:
 
-        True : (color, True, children, True),
-        False : (color, False, children, False)
+        githubSet(
 
-    }[(pClick or pContentDel or pSubjectDel)]
+            pData = gData,
+            pFile = 'feed.json',
+            pRepository = pHeader.replace(' ', '-'),
+            pGithub = Github(jsonLoad(pFile = f'{gDirectory}/backend/data/token.json')[pHeader.split('/')[0]])
+
+        )
+        return {
+
+            True : (color, True, children, True),
+            None: (color, False, children, False),
+            False : (color, False, children, False)
+
+        }[(pClick or pContentDel or pSubjectDel)]
 
     # >
