@@ -9,10 +9,10 @@ from dash_bootstrap_components import themes
 
 
 # global <
-discordToken = ''
+githubToken = ''
 gUserLink = 'https://github.com/lxRbckl/Project-Skotak/raw/main/setting.json'
 
-gGithub = Github(discordToken)
+gGithub = Github(githubToken)
 gUser = requestsGet(pLink = gUserLink)['user']['add']
 gDirectory = '/'.join(path.realpath(__file__).split('/')[:-2])
 application = Dash(
