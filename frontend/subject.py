@@ -58,8 +58,8 @@ def subjectFunction(
                     ),
                     dbc.Input(
 
-                        id = 'titleColorInputId',
-                        placeholder = 'Title Color',
+                        id = 'titleInputId',
+                        placeholder = 'Title',
                         value = pData['content'][pContentLoad]['title'] if (pContentLoad) else None
 
                     )

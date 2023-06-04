@@ -56,7 +56,7 @@ def colCallback(pClick, *args):
                     pGithub = gGithub,
                     pFile = 'feed.json'
 
-                )['feed']
+                )
 
             except: pass
             finally:
@@ -132,16 +132,17 @@ def colCallback(pClick, *args):
 
     except:
 
-        repository = args[1] if (args[1]) else args[0]
+        repository = args[1] or args[0]
         token = jsonLoad(pFile = f'{gDirectory}/backend/data/token.json')
         feed = jsonLoad(pFile = f'{gDirectory}/backend/template/feed.json')
 
         # try if (feed.json exists) <
         # except then (no feed.json) <
-        # finally (notify user ) <
+        # finally (notify user of change) <
         try: gGithub.get_repo(repository).get_contents(path = 'feed.json')
-        except:
+        except Exception as e:
 
+            print('e2', e) # remove
             githubCreate(
 
                 pData = feed,
@@ -186,10 +187,10 @@ def colCallback(pClick, *args):
 
     State('linkInputId', 'value'),
     State('imageInputId', 'value'),
+    State('titleInputId', 'value'),
     State('borderInputId', 'value'),
     State('contentInputId', 'value'),
     State('textColorInputId', 'value'),
-    State('titleColorInputId', 'value'),
     State('backgroundInputId', 'value')
 
 )
@@ -208,10 +209,10 @@ def updateCallback(
 
         pLinkInput: str,
         pImageInput: str,
+        pTitleInput: str,
         pBorderInput: str,
         pContentInput: str,
         pTextColorInput: str,
-        pTitleColorInput: str,
         pBackgroundInput: str
 
 ):
@@ -241,10 +242,10 @@ def updateCallback(
 
                 pLinkInput = pLinkInput,
                 pImageInput = pImageInput,
+                pTitleInput = pTitleInput,
                 pBorderInput = pBorderInput,
                 pContentInput = pContentInput,
                 pTextColorInput = pTextColorInput,
-                pTitleColorInput = pTitleColorInput,
                 pBackgroundInput = pBackgroundInput
 
             )

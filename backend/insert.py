@@ -17,10 +17,10 @@ def insertFunction(
 
         pLinkInput: str,
         pImageInput: str,
+        pTitleInput: str,
         pBorderInput: str,
         pContentInput: str,
         pTextColorInput: str,
-        pTitleColorInput: str,
         pBackgroundInput: str
 
 ):
@@ -97,7 +97,7 @@ def insertFunction(
 
             rData['feed']['content'][c] = {
 
-                'title' : pTitleColorInput,
+                'title' : pTitleInput,
                 'background' : pBackgroundInput,
                 'subject' : [s for s in subject] if (subject) else pData['content'][c]['subject']
 
