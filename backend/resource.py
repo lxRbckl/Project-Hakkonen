@@ -9,7 +9,7 @@ from dash_bootstrap_components import themes
 
 
 # global <
-githubToken = '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'
+githubToken = ''
 gUserLink = 'https://github.com/lxRbckl/Project-Skotak/raw/main/setting.json'
 
 gGithub = Github(githubToken)
